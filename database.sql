@@ -79,3 +79,9 @@ VALUES
 (12,6), (12,3),           -- Social Net
 (13,6), (13,10), (13,1),  -- Titanic
 (14,1), (14,2), (14,4);   -- Toy Story
+
+-- Genres can be applied to many different movies. Movies can have multiple genres. This is Many-to-Many! Junction Table time!
+
+SELECT * FROM movies
+JOIN movies_genres ON movies.id = movies_genres.movie_id
+JOIN genres ON genres.id = movies_genres.genre_id;
