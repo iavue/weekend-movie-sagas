@@ -84,4 +84,5 @@ VALUES
 
 SELECT * FROM movies
 JOIN movies_genres ON movies.id = movies_genres.movie_id
-JOIN genres ON genres.id = movies_genres.genre_id;
+JOIN genres ON genres.id = movies_genres.genre_id
+WHERE movies.id = 1;

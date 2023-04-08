@@ -14,6 +14,26 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+
+    // send the movieId to the database
+    yield takeEvery('SEND_ID_TO_SERVER', sendToServer);
+}
+
+function* sendToServer(action) {
+    console.log('What is action:', action);
+    try {
+        const response = yield axios.get(`/api/genre/${action.payload}`);
+
+        console.log('details response:', response.data);
+
+        yield put({
+            type: 'SET_GENRES',
+            payload: response.data
+        });
+
+    } catch (error) {
+        console.log('Could not get details', error);
+    }
 }
 
 function* fetchAllMovies() {
@@ -51,6 +71,7 @@ const genres = (state = [], action) => {
             return state;
     }
 }
+
 
 // Create one store that all components can use
 const storeInstance = createStore(
