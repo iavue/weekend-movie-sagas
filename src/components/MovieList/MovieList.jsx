@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import { useHistory } from 'react-router-dom'
-import Details from '../Details/Details';
 
 function MovieList() {
 
@@ -14,14 +13,6 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
     
-    // const handleOnClick = ({key}) => {
-    //     //event.preventDefault();
-    //     console.log('Inside handleOnClick() after clicking on movie poster!');
-    //     dispatch({ type: 'SEND_ID_TO_SERVER', payload: key });
-    //     console.log('what is inside payload:', key);
-    //     history.push("/details");
-    // }
-
     return (
         <main>
             <h1>MovieList</h1>
@@ -38,7 +29,6 @@ function MovieList() {
                             alt={movie.title}/>
                         </div>
                     );
-                    // <Details movieId={movie.id}/>
                 })}
             </section>
         </main>
