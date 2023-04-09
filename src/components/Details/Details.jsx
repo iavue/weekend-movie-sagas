@@ -16,10 +16,9 @@ function Details() {
             'details' array is coming back as undefined/empty as the rendering occurs
             at the same time. 
             So we need to use conditional rendering in order to display things on the DOM
-            when the data is available in the Redux store. Here we used the '&&' operator
-            to check if the 'details' array has something in it (not undefined), if it is 
-            not undefinted then render. */}
-            {details.length &&
+            when the data is available in the Redux store. Here we used the ternary operator
+            to check if the 'details' array has something in it then render, or else render 'page loading'. */}
+            {details.length ? (
                 <>
                     {/* To display the movie poster, title & description only once, we access
                     those properties outside of .map(). Then we only want to get the properties from the first
@@ -40,16 +39,16 @@ function Details() {
                             {detail.name}
                         </div>
                     ))}
-                </>
+
+                <br />
+                {/* When the user clicks this button, it will take them back to the home page/movies list view. */}
+                <button onClick={() => {
+                    history.push("/")
+                    }}>
+                        Back to Movie List
+                </button>
+                </> ) : ( <div>Page loading...</div> )
             }
-            <br />
-            {/* When the user clicks this button, it will take them back to the home page/movies list view. */}
-            <button onClick={() => {
-                history.push("/")
-                }
-            }>
-            Back to Movie List
-            </button>
         </>
     );
 
